@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Like-Minded People Geography</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&libraries=places"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Like-Minded People Geography</h1>
+            <p class="subtitle">Join our community of people united by the desire to make the world a kinder and more harmonious place</p>
+            <p class="subtitle-ru">География людей, которых объединяют стремление сделать мир добрее и гармоничнее</p>
+        </header>
+
+        <div class="content">
+            <div class="form-section">
+                <h2>Add Yourself to the Map</h2>
+                <form id="registration-form">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <input type="text" id="location" name="location" required placeholder="City, Country">
+                        <button type="button" id="geocode-btn" class="btn-secondary">Find on Map</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Coordinates</label>
+                        <div class="coordinates">
+                            <input type="number" id="lat" name="lat" step="any" placeholder="Latitude" readonly>
+                            <input type="number" id="lng" name="lng" step="any" placeholder="Longitude" readonly>
+                        </div>
+                        <small>Click on the map or use "Find on Map" to set your location</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interests">Interests & Skills</label>
+                        <textarea id="interests" name="interests" rows="3" placeholder="What are your interests? What skills can you share?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message to Community</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Share a message with other like-minded people"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Add Me to the Map</button>
+                </form>
+
+                <div id="status-message" class="status-message"></div>
+            </div>
+
+            <div class="map-section">
+                <h2>Community Map</h2>
+                <div id="map"></div>
+                <div class="map-info">
+                    <p>Click on the map to set your location, or enter your address and click "Find on Map"</p>
+                    <button id="load-participants" class="btn-secondary">Load All Participants</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>View the full map: <a href="https://www.google.com/maps/d/u/0/edit?mid=1Scfu8Po4sbt9sZB4YWDg-4CUKQcumLPv&usp=sharing" target="_blank">Google My Maps</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
