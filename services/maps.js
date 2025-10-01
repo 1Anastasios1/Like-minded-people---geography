@@ -96,7 +96,7 @@ async function geocodeAddress(address) {
   }
 }
 
-async function validateCoordinates(lat, lng) {
+function validateCoordinates(lat, lng) {
   const latitude = parseFloat(lat);
   const longitude = parseFloat(lng);
 
