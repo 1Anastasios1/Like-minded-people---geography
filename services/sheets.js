@@ -50,12 +50,17 @@ async function addParticipantToSheet(participantData) {
       participantData.lat,
       participantData.lng,
       participantData.interests,
-      participantData.message
+      participantData.lifeGoals,
+      participantData.message,
+      participantData.discord,
+      participantData.telegram,
+      participantData.vk,
+      participantData.otherSocial
     ]];
 
     const request = {
       spreadsheetId,
-      range: 'Sheet1!A:H',
+      range: 'Sheet1!A:M',
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
       resource: {
@@ -85,7 +90,7 @@ async function getParticipants() {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
-      range: 'Sheet1!A2:H'
+      range: 'Sheet1!A2:M'
     });
 
     const rows = response.data.values || [];
@@ -98,7 +103,12 @@ async function getParticipants() {
       lat: parseFloat(row[4]) || 0,
       lng: parseFloat(row[5]) || 0,
       interests: row[6] || '',
-      message: row[7] || ''
+      lifeGoals: row[7] || '',
+      message: row[8] || '',
+      discord: row[9] || '',
+      telegram: row[10] || '',
+      vk: row[11] || '',
+      otherSocial: row[12] || ''
     }));
 
     return participants;
@@ -131,10 +141,10 @@ async function createSheetIfNotExists() {
       console.log('Created spreadsheet with ID:', spreadsheet.data.spreadsheetId);
       console.log('Please add this ID to your .env file as GOOGLE_SHEET_ID');
 
-      const headers = [['Timestamp', 'Name', 'Email', 'Location', 'Latitude', 'Longitude', 'Interests', 'Message']];
+      const headers = [['Timestamp', 'Name', 'Email', 'Location', 'Latitude', 'Longitude', 'Skills/Profession', 'Life Goals', 'Message', 'Discord', 'Telegram', 'VK', 'Other Social']];
       await sheets.spreadsheets.values.update({
         spreadsheetId: spreadsheet.data.spreadsheetId,
-        range: 'Sheet1!A1:H1',
+        range: 'Sheet1!A1:M1',
         valueInputOption: 'USER_ENTERED',
         resource: {
           values: headers
@@ -150,14 +160,14 @@ async function createSheetIfNotExists() {
 
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId,
-        range: 'Sheet1!A1:H1'
+        range: 'Sheet1!A1:M1'
       });
 
       if (!response.data.values || response.data.values.length === 0) {
-        const headers = [['Timestamp', 'Name', 'Email', 'Location', 'Latitude', 'Longitude', 'Interests', 'Message']];
+        const headers = [['Timestamp', 'Name', 'Email', 'Location', 'Latitude', 'Longitude', 'Skills/Profession', 'Life Goals', 'Message', 'Discord', 'Telegram', 'VK', 'Other Social']];
         await sheets.spreadsheets.values.update({
           spreadsheetId,
-          range: 'Sheet1!A1:H1',
+          range: 'Sheet1!A1:M1',
           valueInputOption: 'USER_ENTERED',
           resource: {
             values: headers

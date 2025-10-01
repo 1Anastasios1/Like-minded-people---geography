@@ -83,7 +83,12 @@ document.getElementById('registration-form').addEventListener('submit', async fu
         lat: document.getElementById('lat').value,
         lng: document.getElementById('lng').value,
         interests: document.getElementById('interests').value,
-        message: document.getElementById('message').value
+        lifeGoals: document.getElementById('life-goals').value,
+        message: document.getElementById('message').value,
+        discord: document.getElementById('discord').value,
+        telegram: document.getElementById('telegram').value,
+        vk: document.getElementById('vk').value,
+        otherSocial: document.getElementById('other-social').value
     };
 
     if (!formData.lat || !formData.lng) {
@@ -178,11 +183,26 @@ function createInfoWindowContent(participant) {
     content += `<p class="location">${participant.location}</p>`;
 
     if (participant.interests) {
-        content += `<div class="interests"><strong>Interests:</strong> ${participant.interests}</div>`;
+        content += `<div class="interests"><strong>Skills & Profession:</strong> ${participant.interests}</div>`;
+    }
+
+    if (participant.lifeGoals) {
+        content += `<div class="life-goals"><strong>Life Goals:</strong> ${participant.lifeGoals}</div>`;
     }
 
     if (participant.message) {
-        content += `<div class="message">${participant.message}</div>`;
+        content += `<div class="message"><strong>Message:</strong> ${participant.message}</div>`;
+    }
+
+    // Social media contacts
+    const socials = [];
+    if (participant.discord) socials.push(`Discord: ${participant.discord}`);
+    if (participant.telegram) socials.push(`Telegram: ${participant.telegram}`);
+    if (participant.vk) socials.push(`VK: ${participant.vk}`);
+    if (participant.otherSocial) socials.push(`Other: ${participant.otherSocial}`);
+
+    if (socials.length > 0) {
+        content += `<div class="socials"><strong>Contacts:</strong><br>${socials.join('<br>')}</div>`;
     }
 
     content += `</div>`;

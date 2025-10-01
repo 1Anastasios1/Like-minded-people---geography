@@ -46,7 +46,12 @@ async function addMarkerToMap(participantData) {
       lat: participantData.lat,
       lng: participantData.lng,
       interests: participantData.interests,
+      lifeGoals: participantData.lifeGoals,
       message: participantData.message,
+      discord: participantData.discord,
+      telegram: participantData.telegram,
+      vk: participantData.vk,
+      otherSocial: participantData.otherSocial,
       timestamp: participantData.timestamp
     };
 

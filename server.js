@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/register', async (req, res) => {
   try {
-    const { name, email, location, lat, lng, interests, message } = req.body;
+    const { name, email, location, lat, lng, interests, lifeGoals, message, discord, telegram, vk, otherSocial } = req.body;
 
     if (!name || !email || !location || !lat || !lng) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -56,7 +56,12 @@ app.post('/api/register', async (req, res) => {
       lat: parseFloat(lat),
       lng: parseFloat(lng),
       interests: interests || '',
+      lifeGoals: lifeGoals || '',
       message: message || '',
+      discord: discord || '',
+      telegram: telegram || '',
+      vk: vk || '',
+      otherSocial: otherSocial || '',
       timestamp: new Date().toISOString()
     };
 
